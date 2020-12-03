@@ -1,34 +1,44 @@
 
-import './styles.css';
-import dishes from './menu.json';
-import itemsTemplate from '../templates/gallery-items.hbs';
+import "./styles.css";
+import dishes from "./menu.json";
+import itemsTemplate from "./gallery-items.hbs"; 
 
+const bodyRef = document.querySelector('body');
+const checkboxRef = document.getElementById('theme-switch-toggle');
+const galleryRef = document.querySelector('.js-menu');
 
-const body = document.querySelector('body');
-body.classList.add('dark-theme');
-const checkbox = document.getElementById('theme-switch-toggle');
-const currentTheme = '';
-const Theme = {
-    LIGHT: 'light-theme',
-    DARK: 'dark-theme',
-  };
-checkbox.addEventListener('change', function () { ChangeTheme(); });
+const markup = itemsTemplate(dishes);
+galleryRef.insertAdjacentHTML('beforeend', markup);
+
+bodyRef.classList.add('light-theme');
+checkboxRef.addEventListener('change', ()=> ChangeTheme());
 
 function ChangeTheme()
 {
-        if (currentTheme===Theme.LIGHT){
-        body.classList.add('dark-theme');
-        body.classList.remove('light-theme');
-        }
-        else if(currentTheme===Theme.DARK){
-        body.classList.add('light-theme');
-        body.classList.remove('dark-theme');
-        }
-     
+      if (!checkboxRef.checked){
+      bodyRef.classList.remove('dark-theme');
+      bodyRef.classList.add('light-theme');
+      }
+      else  {
+      bodyRef.classList.remove('light-theme');
+      bodyRef.classList.add('dark-theme');
+      }
 };
 
- const galleryRef = document.querySelector('js-menu');
- const markup = itemsTemplate(dishes);
- galleryRef.insertAdjacentHTML('beforeend', markup);
+const Theme = {
+  LIGHT: 'light-theme',
+  DARK: 'dark-theme',
+};
+
+localStorage.setItem('theme', Theme.DARK);
+
+ 
+
+
+ 
+ 
+
+ 
+
 
   
