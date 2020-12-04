@@ -13,32 +13,37 @@ galleryRef.insertAdjacentHTML('beforeend', markup);
 bodyRef.classList.add('light-theme');
 checkboxRef.addEventListener('change', ()=> ChangeTheme());
 
-function ChangeTheme()
-{
-      if (!checkboxRef.checked){
-      bodyRef.classList.remove('dark-theme');
-      bodyRef.classList.add('light-theme');
-      }
-      else  {
-      bodyRef.classList.remove('light-theme');
-      bodyRef.classList.add('dark-theme');
-      }
-};
-
 const Theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
 
-localStorage.setItem('theme', Theme.DARK);
+const key =localStorage.getItem('theme');
 
- 
+function UpdateTheme(){
+  if(key=== Theme.DARK){
+    checkboxRef.checked=true;
+    bodyRef.classList.remove('light-theme');
+    bodyRef.classList.add('dark-theme');
+};
+};
+
+UpdateTheme();
+
+function ChangeTheme()
+{
+      if (!checkboxRef.checked){
+      bodyRef.classList.remove('dark-theme');
+      bodyRef.classList.add('light-theme');
+      localStorage.setItem('theme', Theme.LIGHT);
+      }
+      else  {
+      bodyRef.classList.remove('light-theme');
+      bodyRef.classList.add('dark-theme');
+      localStorage.setItem('theme', Theme.DARK);
+      }
+};
 
 
- 
- 
-
- 
 
 
-  
