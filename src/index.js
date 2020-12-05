@@ -11,36 +11,36 @@ const markup = itemsTemplate(dishes);
 galleryRef.insertAdjacentHTML('beforeend', markup);
 
 bodyRef.classList.add('light-theme');
-checkboxRef.addEventListener('change', ()=> ChangeTheme());
+checkboxRef.addEventListener('change', ()=> changeTheme());
 
-const Theme = {
+const theme = {
   LIGHT: 'light-theme',
   DARK: 'dark-theme',
 };
 
-const key =localStorage.getItem('theme');
+const themeValue =localStorage.getItem('theme');
 
-function UpdateTheme(){
-  if(key=== Theme.DARK){
+function updateTheme(){
+  if(themeValue=== theme.DARK){
     checkboxRef.checked=true;
     bodyRef.classList.remove('light-theme');
     bodyRef.classList.add('dark-theme');
 };
 };
 
-UpdateTheme();
+updateTheme();
 
-function ChangeTheme()
+function changeTheme()
 {
       if (!checkboxRef.checked){
       bodyRef.classList.remove('dark-theme');
       bodyRef.classList.add('light-theme');
-      localStorage.setItem('theme', Theme.LIGHT);
+      localStorage.setItem('theme', theme.LIGHT);
       }
       else  {
       bodyRef.classList.remove('light-theme');
       bodyRef.classList.add('dark-theme');
-      localStorage.setItem('theme', Theme.DARK);
+      localStorage.setItem('theme', theme.DARK);
       }
 };
 
